@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, View, SafeAreaView, Pressable, StyleSheet } from "react-native";
+import { Image, Text, SafeAreaView, Pressable, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 export default function ImagePickerExample() {
@@ -10,8 +10,8 @@ export default function ImagePickerExample() {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+      aspect: [9, 16],
+      quality: 0.5,
     });
 
     console.log(result);
@@ -24,7 +24,7 @@ export default function ImagePickerExample() {
   return (
     <SafeAreaView style={estilos.viewSafe}>
       <Pressable style={estilos.botao} onPress={pickImage}>
-        <Text>Pick an image from camera roll</Text>
+        <Text style={estilos.texto}>Escolha uma foto ou um vídeo</Text>
       </Pressable>
       {image && (
         <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
@@ -39,5 +39,14 @@ const estilos = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  botao: {
+    padding: 8,
+    backgroundColor: "blue",
+    borderRadius: 5,
+  },
+  texto: {
+    fontSize: 16,
+    color: "white",
   },
 });
